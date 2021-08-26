@@ -1,0 +1,35 @@
+{% include 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-center">Ingrese a su Cuenta</h5>
+        <form action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+
+          {% include 'partials/_messages.html' %}
+          <div class="form-group">
+            <input type="text" name="username" placeholder="username" id="usernameField" value="{{fieldValues.username}}" class="form-control mb-3" />
+          </div>
+          <div class="form-group">
+            <input type="password" name="password" placeholder="Password" class="form-control mb-3" id="passwordField" />
+          </div>
+          <div class="d-grid gap-2">
+            <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn" />
+          </div>
+        </form>
+        <div class="container p-2">
+          <span class="text-lead lead">¿No tienes una cuenta?</span>
+          <a href="{% url 'register' %}">Registrarse</a><br>
+          <span class="text-lead lead">¿Se te olvidó tu contraseña?</span>
+          <a href="{% url 'request-password' %}">Restablecer nuevo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock %}
