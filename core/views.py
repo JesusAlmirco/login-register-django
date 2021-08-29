@@ -135,17 +135,30 @@ class VerificationView(View):
 
     return redirect('login')
 
+# validate login with email
+def authenticate_user(email, password):
+  try:
+    user = User.objects.get(email=email)
+  except User.DoesNotExist:
+    return None
+  else:
+    if user.check_password(password):
+      return user
+
+  return None
+
 # Login
 class LoginView(View):
   def get(self, request):
     return render(request, 'accounts/login.html')
 
   def post(self, request):
-    username = request.POST['username']
+    email = request.POST['email']
     password = request.POST['password']
 
-    if username and password:
-      user = auth.authenticate(username=username, password=password)
+    if email and password:
+      # user = auth.authenticate(username=username, password=password)
+      user = authenticate_user(email, password)
 
       if user:
         if user.is_active:
