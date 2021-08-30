@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-4">
+      <div class="card shadow">
+        <div class="card-body">
+          <h4 class="text-center text-uppercase mb-3">
+            <b> Login</b>
+          </h4>
+            
+          <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form_errors form %}
+            {% bootstrap_label "Email" %}
+            {% bootstrap_field form.username show_label=False placeholder="Email" %}
+            {% bootstrap_field form.password %}
+
+            <button class="btn btn-warning btn-block">Iniciar Sesión</button>
+            <p class="text-center mt-3">
+              <a href="/password-reset/?next={{ request.GET.next }}"><b>¿Olvidaste tu contraseña?</b></a>
+            </p>
+            <p class="text-center mt-3">
+              ¿Aún no tienes cuenta en <strong>HiGoLearn</strong>? <br>
+              <a class="btn btn-outline-warning btn-block" href="/register/?next={{ request.GET.next }}"><b>Registrarse</b></a>
+            </p>
+
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,10 +1,13 @@
 asgiref==3.4.1
+beautifulsoup4==4.9.3
 cffi==1.14.6
 Django==3.2.6
+django-bootstrap4==3.0.1
 dnspython==2.1.0
 idna==3.2
 pycparser==2.20
 pytz==2021.1
 six==1.16.0
+soupsieve==2.2.1
 sqlparse==0.4.1
 validate-email==1.3

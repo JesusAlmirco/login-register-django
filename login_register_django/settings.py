@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Add app
-    'core.apps.CoreConfig'
+    'core.apps.CoreConfig',
+    # Add bootstrap4
+    "bootstrap4",
 ]
 
 MIDDLEWARE = [
@@ -123,29 +125,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#Settings for redirect
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Email smtp
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Email smtp - Send welcome email with sendrid
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY_TEST')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-
-
-
-
-MESSAGE_TAGS={
-    messages.ERROR:'danger'
-}
-
-
-LOGIN_URL='login'
-LOGIN_REDIRECT_URL='home'
-LOGOUT_URL='logout'
-LOGOUT_REDIRECT_URL='login'
