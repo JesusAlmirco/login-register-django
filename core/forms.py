@@ -6,8 +6,6 @@ from django.core.exceptions import ValidationError
 
 class SignUpForm(UserCreationForm):
   email = forms.EmailField(max_length=250, required=True)
-  first_name = forms.CharField(max_length=150, required=True)
-  last_name = forms.CharField(max_length=150, required=True)
 
   class Meta:
     model = User
